@@ -111,7 +111,7 @@ If env links are present, download cards automatically switch from `Coming Soon`
 Create `.env.local` from `.env.example`:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://cd4.app
+NEXT_PUBLIC_SITE_URL=https://cd4.co.in
 NEXT_PUBLIC_ANDROID_STORE_URL=https://play.google.com/store/apps/details?id=com.cd4.app
 NEXT_PUBLIC_IOS_STORE_URL=https://apps.apple.com/app/idYOUR_APP_ID
 NEXT_PUBLIC_APK_URL=https://your-cdn.com/cd4-latest.apk
