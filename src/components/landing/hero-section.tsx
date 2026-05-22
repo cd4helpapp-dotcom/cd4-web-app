@@ -101,12 +101,7 @@ export function HeroSection({
           </motion.ul>
         </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="relative"
-        >
+        <div className="relative">
           <div className="glass-panel relative overflow-hidden rounded-3xl p-6 shadow-[0_30px_100px_-30px_rgba(2,6,23,0.95)]">
             <div className="bg-noise" />
             <div className="relative z-10 flex items-center justify-between">
@@ -194,7 +189,7 @@ export function HeroSection({
             </ul>
             </div>
           </div>
-        </motion.div>
+        </div>
       </Container>
     </section>
   );
