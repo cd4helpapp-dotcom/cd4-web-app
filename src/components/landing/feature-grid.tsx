@@ -12,7 +12,7 @@ interface FeatureGridProps {
 
 export function FeatureGrid({ features }: FeatureGridProps) {
   return (
-    <section id="features" className="py-16 sm:py-20">
+    <section id="features" className="py-12 sm:py-20">
       <Container>
         <SectionHeading
           kicker="Core Capabilities"

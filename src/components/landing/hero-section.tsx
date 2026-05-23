@@ -35,7 +35,7 @@ export function HeroSection({
   highlights
 }: HeroSectionProps) {
   return (
-    <section className="relative overflow-hidden py-16 sm:py-24">
+    <section className="relative overflow-hidden py-12 sm:py-24">
       <div className="hero-bg">
         <div className="grid-lines" />
         <div className="orb orb-1" />
@@ -92,7 +92,7 @@ export function HeroSection({
             {highlights.map((item) => (
               <li
                 key={item}
-                className="inline-flex items-center gap-2 rounded-xl bg-white/6 px-3 py-2 text-sm text-slate-200 ring-1 ring-white/10"
+                className="premium-card inline-flex items-center gap-2 rounded-xl bg-white/6 px-3 py-2 text-sm text-slate-200 ring-1 ring-white/10"
               >
                 <span className="h-2 w-2 rounded-full bg-cyan-300" />
                 {item}
@@ -102,7 +102,7 @@ export function HeroSection({
         </motion.div>
 
         <div className="relative">
-          <div className="glass-panel relative overflow-hidden rounded-3xl p-6 shadow-[0_30px_100px_-30px_rgba(2,6,23,0.95)]">
+          <div className="glass-panel premium-card relative overflow-hidden rounded-3xl p-6 shadow-[0_30px_100px_-30px_rgba(2,6,23,0.95)]">
             <div className="bg-noise" />
             <div className="relative z-10 flex items-center justify-between">
               <div>

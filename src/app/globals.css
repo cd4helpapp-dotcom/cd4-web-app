@@ -276,14 +276,19 @@ body {
 
 .testimonials-marquee {
   position: relative;
-  overflow: hidden;
+  overflow-x: auto;
   mask-image: linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.testimonials-marquee::-webkit-scrollbar {
+  display: none;
 }
 
 .testimonials-track {
   display: flex;
   width: max-content;
-  animation: testimonialsScroll 44s linear infinite;
 }
 
 .testimonials-set {
@@ -292,35 +297,14 @@ body {
   padding-right: 1rem;
 }
 
-.testimonials-marquee:hover .testimonials-track {
-  animation-play-state: paused;
-}
-
 @media (max-width: 640px) {
   .testimonials-marquee {
-    overflow-x: auto;
     mask-image: none;
     scroll-snap-type: x mandatory;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .testimonials-marquee::-webkit-scrollbar {
-    display: none;
-  }
-
-  .testimonials-track {
-    animation: none;
   }
 
   .testimonial-card {
     scroll-snap-align: start;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .testimonials-track {
-    animation: none;
   }
 }
 
@@ -337,15 +321,6 @@ body {
     box-shadow:
       0 0 34px rgba(6, 182, 212, 0.32),
       inset 0 0 14px rgba(255, 255, 255, 0.08);
-  }
-}
-
-@keyframes testimonialsScroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
   }
 }
 
@@ -639,9 +614,7 @@ body {
 .premium-card {
   position: relative;
   overflow: hidden;
-  transform: translateZ(0);
   -webkit-tap-highlight-color: transparent;
-  will-change: transform, box-shadow, border-color;
   transition:
     transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 420ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -666,7 +639,8 @@ body {
 
 @media (hover: none) and (pointer: coarse) {
   .premium-card:active,
-  .premium-card:focus-within {
+  .premium-card:focus-within,
+  .premium-card.is-touch-glowing {
     transform: translateY(-4px) scale(1.006);
     box-shadow:
       0 24px 62px -34px rgba(6, 182, 212, 0.36),
@@ -674,7 +648,8 @@ body {
   }
 
   .premium-card:active::before,
-  .premium-card:focus-within::before {
+  .premium-card:focus-within::before,
+  .premium-card.is-touch-glowing::before {
     opacity: 1;
   }
 }
@@ -785,7 +760,7 @@ body {
 }
 
 .section-separator {
-  width: min(1280px, calc(100% - 3rem));
+  width: min(1280px, calc(100% - 2rem));
   height: 1px;
   margin: 0 auto;
   background: linear-gradient(
@@ -795,6 +770,12 @@ body {
     rgba(139, 92, 246, 0.25) 65%,
     rgba(139, 92, 246, 0)
   );
+}
+
+@media (min-width: 640px) {
+  .section-separator {
+    width: min(1280px, calc(100% - 3rem));
+  }
 }
 
 @keyframes revealUp {

@@ -82,7 +82,7 @@ const STORE_META: Record<DownloadLink["id"], StoreMeta> = {
 
 export function DownloadSection({ links }: DownloadSectionProps) {
   return (
-    <section id="download" className="pt-16 pb-8 sm:py-20">
+    <section id="download" className="pt-12 pb-8 sm:py-20">
       <Container>
         <div className="overflow-hidden rounded-3xl bg-[radial-gradient(circle_at_16%_14%,rgba(139,92,246,0.16),transparent_40%),radial-gradient(circle_at_88%_8%,rgba(16,185,129,0.11),transparent_36%),linear-gradient(180deg,#080a12_0%,#0b0f1a_100%)] px-6 py-10 sm:px-10">
           <SectionHeading
@@ -116,11 +116,16 @@ export function DownloadSection({ links }: DownloadSectionProps) {
                   target="_blank"
                   rel="noreferrer"
                   aria-disabled={link.comingSoon}
+                  onClick={(event) => {
+                    if (link.comingSoon) {
+                      event.preventDefault();
+                    }
+                  }}
                   className={`group download-card premium-card rounded-2xl border p-5 transition-colors ${
                     isFeatured ? "download-card-featured" : ""
                   } ${
                     link.comingSoon
-                      ? "pointer-events-none cursor-not-allowed border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] opacity-90"
+                      ? "cursor-not-allowed border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] opacity-90"
                       : "border-white/15 bg-[linear-gradient(160deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] hover:border-violet-300/35"
                   }`}
                 >

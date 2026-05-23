@@ -8,7 +8,7 @@ interface JourneySectionProps {
 
 export function JourneySection({ steps }: JourneySectionProps) {
   return (
-    <section id="journey" className="py-16 sm:py-20">
+    <section id="journey" className="py-12 sm:py-20">
       <Container>
         <SectionHeading
           kicker="Care Journey"

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
+import { TouchGlowProvider } from "@/components/shared/touch-glow-provider";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cd4.co.in";
@@ -114,6 +116,8 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {children}
+        <TouchGlowProvider />
+        <ScrollToTopButton />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
