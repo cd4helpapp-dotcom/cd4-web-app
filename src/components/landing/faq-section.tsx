@@ -8,7 +8,7 @@ interface FaqSectionProps {
 
 export function FaqSection({ items }: FaqSectionProps) {
   return (
-    <section id="faq" className="pt-8 pb-16 sm:py-20">
+    <section id="faq" className="pt-6 pb-12 sm:py-20">
       <Container>
         <SectionHeading kicker="FAQ" title="Answers to common patient questions." />
 

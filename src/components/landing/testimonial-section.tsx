@@ -18,58 +18,72 @@ const avatarStyles = [
 ];
 
 export function TestimonialSection({ items }: TestimonialSectionProps) {
-  const mobileScrollerRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const scroller = mobileScrollerRef.current;
+    const scroller = scrollerRef.current;
     if (!scroller) {
       return;
     }
 
-    const mediaQuery = window.matchMedia("(max-width: 640px)");
-    let intervalId: ReturnType<typeof setInterval> | null = null;
+    let index = 0;
+    let resetTimer: ReturnType<typeof setTimeout> | null = null;
 
-    const startAutoScroll = () => {
-      if (!mediaQuery.matches) {
+    const clearResetTimer = () => {
+      if (resetTimer) {
+        clearTimeout(resetTimer);
+        resetTimer = null;
+      }
+    };
+
+    const jumpToStart = () => {
+      const previousScrollBehavior = scroller.style.scrollBehavior;
+
+      scroller.style.scrollBehavior = "auto";
+      scroller.scrollLeft = 0;
+      index = 0;
+
+      window.requestAnimationFrame(() => {
+        scroller.style.scrollBehavior = previousScrollBehavior;
+      });
+    };
+
+    const moveToNext = () => {
+      const cards = scroller.querySelectorAll<HTMLElement>(".testimonial-card");
+      const realCardCount = items.length;
+
+      if (!cards.length || realCardCount < 2) {
         return;
       }
 
-      intervalId = setInterval(() => {
-        const cards = scroller.querySelectorAll<HTMLElement>(".testimonial-card");
-        if (!cards.length) {
-          return;
-        }
+      clearResetTimer();
+      index += 1;
 
-        const gap = 16;
-        const step = cards[0].offsetWidth + gap;
-        const maxLeft = scroller.scrollWidth - scroller.clientWidth;
-        const nextLeft = scroller.scrollLeft + step;
+      const nextCard = cards[index];
 
-        scroller.scrollTo({
-          left: nextLeft >= maxLeft - 2 ? 0 : nextLeft,
-          behavior: "smooth"
-        });
-      }, 3000);
-    };
+      if (!nextCard) {
+        jumpToStart();
+        return;
+      }
 
-    const stopAutoScroll = () => {
-      if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = null;
+      scroller.scrollTo({
+        left: nextCard.offsetLeft,
+        behavior: "smooth"
+      });
+
+      if (index === realCardCount) {
+        resetTimer = setTimeout(jumpToStart, 700);
       }
     };
 
-    const restartForViewport = () => {
-      stopAutoScroll();
-      startAutoScroll();
-    };
+    const intervalId = setInterval(moveToNext, 3000);
 
-    startAutoScroll();
-    mediaQuery.addEventListener("change", restartForViewport);
+    window.addEventListener("resize", jumpToStart);
 
     return () => {
-      stopAutoScroll();
-      mediaQuery.removeEventListener("change", restartForViewport);
+      clearInterval(intervalId);
+      clearResetTimer();
+      window.removeEventListener("resize", jumpToStart);
     };
   }, [items.length]);
 
@@ -98,7 +112,7 @@ export function TestimonialSection({ items }: TestimonialSectionProps) {
   );
 
   return (
-    <section id="testimonials" className="py-16 sm:py-20">
+    <section id="testimonials" className="py-12 sm:py-20">
       <Container>
         <SectionHeading
           kicker="Voices"
@@ -106,7 +120,7 @@ export function TestimonialSection({ items }: TestimonialSectionProps) {
           description="Real feedback from patients and doctors using CD4 AI in everyday care journeys."
         />
 
-        <div ref={mobileScrollerRef} className="testimonials-marquee mt-10">
+        <div ref={scrollerRef} className="testimonials-marquee mt-10">
           <div className="testimonials-track">
             <div className="testimonials-set">{items.map((item, index) => renderCard(item, index, "a"))}</div>
             <div className="testimonials-set" aria-hidden>

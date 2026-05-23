@@ -8,7 +8,7 @@ interface RoleSectionProps {
 
 export function RoleSection({ roles }: RoleSectionProps) {
   return (
-    <section className="py-16 sm:py-20">
+    <section className="py-12 sm:py-20">
       <Container>
         <SectionHeading
           kicker="Why Patients Trust CD4 AI"
