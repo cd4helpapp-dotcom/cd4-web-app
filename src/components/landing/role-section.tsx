@@ -11,7 +11,7 @@ export function RoleSection({ roles }: RoleSectionProps) {
     <section className="py-12 sm:py-20">
       <Container>
         <SectionHeading
-          kicker="Why Patients Trust CD4 AI"
+          kicker="Why Patients Trust CD4"
           title="Built to make every health decision faster, clearer, and safer."
         />
 

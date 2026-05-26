@@ -4,10 +4,10 @@ export const dynamic = "force-static";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "CD4 AI",
+    name: "CD4 - AI-Based Healthcare Platform",
     short_name: "CD4 AI",
     description:
-      "CD4 AI helps patients book consultations by voice, share AI-ready history snapshots with doctors, and continue care in one app.",
+      "CD4 is an AI-based healthcare platform for voice doctor booking, AI-ready history snapshots, report understanding, prescriptions, and follow-up care.",
     start_url: "/",
     display: "standalone",
     background_color: "#07090f",

@@ -12,7 +12,7 @@ export function JourneySection({ steps }: JourneySectionProps) {
       <Container>
         <SectionHeading
           kicker="Care Journey"
-          title="From voice booking to doctor-ready consultation in four steps."
+          title="From voice booking to doctor-ready care in four steps."
         />
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
