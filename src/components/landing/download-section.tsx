@@ -87,8 +87,8 @@ export function DownloadSection({ links }: DownloadSectionProps) {
         <div className="overflow-hidden rounded-3xl bg-[radial-gradient(circle_at_16%_14%,rgba(139,92,246,0.16),transparent_40%),radial-gradient(circle_at_88%_8%,rgba(16,185,129,0.11),transparent_36%),linear-gradient(180deg,#080a12_0%,#0b0f1a_100%)] px-6 py-10 sm:px-10">
           <SectionHeading
             kicker="Download CD4 AI"
-            title="Start your CD4 AI health journey on your preferred device."
-            description="Choose your platform and begin with voice booking, AI doctor snapshot flow, and follow-up care in one app."
+            title="Start your CD4 health journey on your preferred device."
+            description="Choose your platform and begin with an AI-based healthcare platform built for voice booking, AI doctor snapshot flow, and follow-up care in one app."
             className="[&_*]:text-white [&_p:last-child]:text-slate-300 [&_p:first-child]:text-emerald-300"
           />
 

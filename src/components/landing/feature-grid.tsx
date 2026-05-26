@@ -16,8 +16,8 @@ export function FeatureGrid({ features }: FeatureGridProps) {
       <Container>
         <SectionHeading
           kicker="Core Capabilities"
-          title="Voice-first booking and AI doctor context in one flow."
-          description="CD4 AI combines voice appointment booking, AI history snapshot delivery, and follow-up continuity in a single premium experience."
+          title="CD4 brings AI-based healthcare into one practical care flow."
+          description="CD4 is an AI-based healthcare platform for voice appointment booking, AI history snapshots, report understanding, prescriptions, and follow-up continuity."
         />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

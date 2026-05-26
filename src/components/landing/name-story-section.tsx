@@ -7,9 +7,9 @@ export function NameStorySection() {
     <section id="why-cd4-ai" className="py-12 sm:py-20">
       <Container className="grid items-start gap-8 lg:grid-cols-[1fr_0.95fr]">
         <SectionHeading
-          kicker="Why CD4 AI"
-          title="Inspired by biological intelligence. Built for coordinated care."
-          description="In the human body, CD4 cells help coordinate immune response like a smart command center. We chose the name CD4 AI because our product does the same in healthcare by syncing patients, doctors, and AI context into one connected flow."
+          kicker="Why CD4"
+          title="CD4 is inspired by biological intelligence and built for coordinated care."
+          description="In the human body, CD4 cells help coordinate immune response like a smart command center. We chose the name CD4 because this AI-based healthcare platform syncs patients, doctors, and AI context into one connected care flow."
         />
 
         <article className="premium-card relative overflow-hidden rounded-3xl border border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6 shadow-[0_20px_58px_-34px_rgba(0,0,0,0.9)]">
@@ -18,7 +18,7 @@ export function NameStorySection() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
               Name Origin
             </p>
-            <h3 className="mt-3 font-heading text-2xl text-white">Why we chose CD4 AI</h3>
+            <h3 className="mt-3 font-heading text-2xl text-white">Why we chose CD4</h3>
 
             <ul className="mt-5 space-y-3">
               <li className="premium-card flex gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-3">
@@ -34,7 +34,7 @@ export function NameStorySection() {
                   <HeartPulse className="h-4 w-4 text-emerald-200" />
                 </span>
                 <p className="text-sm leading-6 text-slate-200">
-                  AI brings clarity from voice symptoms, history, and reports before consultation.
+                  AI brings clarity from voice symptoms, history, and reports before the doctor visit.
                 </p>
               </li>
               <li className="premium-card flex gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-3">
@@ -42,7 +42,7 @@ export function NameStorySection() {
                   <Link2 className="h-4 w-4 text-violet-200" />
                 </span>
                 <p className="text-sm leading-6 text-slate-200">
-                  CD4 AI connects patient voice, doctor context, and follow-up continuity in one care journey.
+                  CD4 connects patient voice, doctor context, and follow-up continuity in one care journey.
                 </p>
               </li>
             </ul>

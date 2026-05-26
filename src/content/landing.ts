@@ -2,13 +2,13 @@ import { LandingContent } from "@/types/landing";
 
 export const landingContent: LandingContent = {
   appName: "CD4 AI",
-  tagline: "Speak once. Be understood faster. Heal with confidence.",
+  tagline: "India-wide AI-based healthcare platform for smarter patient care.",
   description:
-    "CD4 AI lets patients book appointments by voice, sends AI-structured symptom history to doctors, and keeps the full care flow smooth from first concern to follow-up.",
+    "CD4 is an India-wide AI-based healthcare platform that helps patients book doctor appointments by voice, share AI-structured symptom history, understand health reports and prescriptions, and continue follow-up care in one connected app.",
   nav: [
     { label: "Features", href: "#features" },
     { label: "How It Works", href: "#journey" },
-    { label: "Why CD4 AI", href: "#why-cd4-ai" },
+    { label: "Why CD4", href: "#why-cd4-ai" },
     { label: "Voices", href: "#testimonials" },
     { label: "Download", href: "#download" },
     { label: "FAQ", href: "#faq" }
@@ -17,7 +17,7 @@ export const landingContent: LandingContent = {
     { value: "Voice-First", label: "Book appointments naturally in Hindi or English" },
     {
       value: "AI Snapshot",
-      label: "Doctor receives structured symptom history before consultation"
+      label: "Doctor receives structured symptom history before the care visit"
     },
     {
       value: "Smooth Flow",
@@ -27,20 +27,20 @@ export const landingContent: LandingContent = {
   featureHighlights: [
     "Book doctor appointments directly through voice commands",
     "AI converts symptom conversation into doctor-ready history snapshot",
-    "Doctors get clearer context before the consultation starts",
+    "Doctors get clearer context before the care visit starts",
     "Join a healthcare-first social community for trusted patient support"
   ],
   features: [
     {
       title: "Voice Appointment Booking",
       description:
-        "Patients can speak naturally to book a consultation quickly, without filling long forms or navigating complex screens.",
+        "Patients can speak naturally to book a doctor appointment quickly, without filling long forms or navigating complex screens.",
       tone: "sky"
     },
     {
       title: "AI History Snapshot for Doctors",
       description:
-        "Before the appointment, CD4 AI prepares a clean symptom timeline and summary so doctors start with better context.",
+        "Before the appointment, CD4 prepares a clean symptom timeline and summary so doctors start with better context.",
       tone: "amber"
     },
     {
@@ -77,7 +77,7 @@ export const landingContent: LandingContent = {
     {
       title: "Generate AI history snapshot",
       description:
-        "CD4 AI structures your symptom history and key details into a doctor-ready summary before booking."
+        "CD4 structures your symptom history and key details into a doctor-ready summary before booking."
     },
     {
       title: "Book appointment by voice",
@@ -85,9 +85,9 @@ export const landingContent: LandingContent = {
         "Confirm slot quickly with a simple voice-first booking flow and send context to the doctor instantly."
     },
     {
-      title: "Consult and continue care",
+      title: "Visit and continue care",
       description:
-        "Complete consultation, understand prescriptions and reports, and stay connected for follow-up care."
+        "Complete the doctor visit, understand prescriptions and reports, and stay connected for follow-up care."
     }
   ],
   roles: [
@@ -102,7 +102,7 @@ export const landingContent: LandingContent = {
     },
     {
       role: "With Doctors",
-      title: "Consultations start with context, not guesswork",
+      title: "Doctor visits start with context, not guesswork",
       points: [
         "AI history snapshot is shared before the call",
         "Doctors see symptom flow and report context instantly",
@@ -114,7 +114,7 @@ export const landingContent: LandingContent = {
       title: "One trusted place for complete care records",
       points: [
         "Store prescriptions, reports, and booking history",
-        "Track recovery progress across consultations",
+        "Track recovery progress across care visits",
         "Share updates confidently during treatment"
       ]
     }
@@ -129,7 +129,7 @@ export const landingContent: LandingContent = {
     },
     {
       quote:
-        "The AI snapshot saves consultation time and helps me focus on treatment decisions instead of repeating basic history questions.",
+        "The AI snapshot saves visit time and helps me focus on treatment decisions instead of repeating basic history questions.",
       name: "Dr. Ravi Shankar",
       role: "General Physician, Mumbai",
       initials: "DR"
@@ -180,6 +180,26 @@ export const landingContent: LandingContent = {
     }
   ],
   faqs: [
+    {
+      question: "What is CD4?",
+      answer:
+        "CD4 is an AI-based healthcare platform that helps patients book doctor appointments by voice, share symptom history with doctors, understand reports and prescriptions, and manage follow-up care."
+    },
+    {
+      question: "Where is CD4 based?",
+      answer:
+        "CD4 has its office base in Sector 46-B, Chandigarh, India, and serves users across India with voice booking, AI symptom history, health records, and follow-up support."
+    },
+    {
+      question: "Is CD4 available across India?",
+      answer:
+        "Yes. CD4 is built as an India-wide AI-based healthcare platform for patients and connected care journeys across India."
+    },
+    {
+      question: "Is CD4 an AI-based healthcare platform?",
+      answer:
+        "Yes. CD4 uses AI to organize patient symptoms, health records, reports, and prescriptions so doctors and patients have clearer context during the care journey."
+    },
     {
       question: "Is CD4 AI a replacement for doctor diagnosis?",
       answer:

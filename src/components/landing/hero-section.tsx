@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
-import { Calendar, FileText, MapPin, Mic, ShieldCheck, Users } from "lucide-react";
+import { Calendar, CheckCircle2, FileText, MapPin, Mic, ShieldCheck, Users } from "lucide-react";
 import { Container } from "@/components/shared/container";
 import { HeroStat } from "@/types/landing";
 
@@ -35,7 +35,7 @@ export function HeroSection({
   highlights
 }: HeroSectionProps) {
   return (
-    <section className="relative overflow-hidden py-12 sm:py-24">
+    <section className="relative overflow-hidden py-14 sm:py-20 lg:py-24">
       <div className="hero-bg">
         <div className="grid-lines" />
         <div className="orb orb-1" />
@@ -50,31 +50,32 @@ export function HeroSection({
       <div className="hero-glow hero-glow-left" />
       <div className="hero-glow hero-glow-right" />
 
-      <Container className="relative z-10 grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <Container className="relative z-10 grid max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] xl:gap-16">
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           animate="visible"
+          className="max-w-3xl"
         >
           <motion.p variants={itemVariants} className="inline-flex items-center gap-2 rounded-full border border-cyan-400/35 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
             <ShieldCheck className="h-4 w-4" />
             AI + Human Care Flow
           </motion.p>
 
-          <motion.h1 variants={itemVariants} className="mt-6 font-heading text-4xl leading-tight text-white sm:text-6xl">
+          <motion.h1 variants={itemVariants} className="mt-6 font-heading text-4xl leading-[1.08] text-white sm:text-5xl lg:text-6xl">
             <span className="bg-gradient-to-r from-white via-cyan-200 to-violet-300 bg-clip-text text-transparent">
               {appName}
             </span>
             <span className="block text-slate-200">{tagline}</span>
           </motion.h1>
-          <motion.p variants={itemVariants} className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">{description}</motion.p>
+          <motion.p variants={itemVariants} className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">{description}</motion.p>
 
-          <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-3">
+          <motion.div variants={itemVariants} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#download"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-colors hover:shadow-[0_14px_40px_rgba(139,92,246,0.35)]"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-colors hover:shadow-[0_14px_40px_rgba(139,92,246,0.35)]"
             >
               Download CD4 AI
             </motion.a>
@@ -82,34 +83,34 @@ export function HeroSection({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#features"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-slate-200 transition-colors hover:border-cyan-300/55 hover:bg-white/10"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-slate-200 transition-colors hover:border-cyan-300/55 hover:bg-white/10"
             >
               Explore Features
             </motion.a>
           </motion.div>
 
-          <motion.ul variants={itemVariants} className="mt-8 grid gap-3 sm:grid-cols-2">
+          <motion.ul variants={itemVariants} className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-2">
             {highlights.map((item) => (
               <li
                 key={item}
-                className="premium-card inline-flex items-center gap-2 rounded-xl bg-white/6 px-3 py-2 text-sm text-slate-200 ring-1 ring-white/10"
+                className="premium-card flex min-h-[76px] items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.045] p-4 text-sm leading-6 text-slate-200"
               >
-                <span className="h-2 w-2 rounded-full bg-cyan-300" />
-                {item}
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-300" />
+                <span>{item}</span>
               </li>
             ))}
           </motion.ul>
         </motion.div>
 
-        <div className="relative">
-          <div className="glass-panel premium-card relative overflow-hidden rounded-3xl p-6 shadow-[0_30px_100px_-30px_rgba(2,6,23,0.95)]">
+        <div className="relative grid gap-5 lg:justify-self-end">
+          <div className="glass-panel premium-card relative overflow-hidden rounded-3xl p-5 shadow-[0_30px_100px_-30px_rgba(2,6,23,0.95)] sm:p-6 lg:w-[min(100%,540px)]">
             <div className="bg-noise" />
             <div className="relative z-10 flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
                   Live Product Snapshot
                 </p>
-                <p className="mt-1 font-heading text-2xl text-white">CD4 AI Mobile Suite</p>
+                <p className="mt-1 font-heading text-2xl text-white sm:text-3xl">CD4 AI Mobile Suite</p>
               </div>
               <Image
                 src="/images/cd4-logo-nav.png"
@@ -121,72 +122,74 @@ export function HeroSection({
               />
             </div>
 
-            <div className="relative z-10 mt-6 space-y-4">
+            <div className="relative z-10 mt-6 grid gap-3">
               {stats.map((item) => (
                 <div
                   key={item.label}
-                  className="premium-card rounded-2xl bg-[rgba(5,9,24,0.95)] p-4 text-white ring-1 ring-white/10"
+                  className="rounded-2xl border border-white/10 bg-[rgba(5,9,24,0.95)] p-4 text-white"
                 >
-                  <p className="font-heading text-2xl">{item.value}</p>
-                  <p className="mt-1 text-sm text-slate-300">{item.label}</p>
+                  <p className="font-heading text-2xl leading-none">{item.value}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{item.label}</p>
                 </div>
               ))}
             </div>
           </div>
-          <div className="premium-card relative overflow-hidden mt-5 rounded-3xl border border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5">
+          <div className="premium-card relative overflow-hidden rounded-3xl border border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5 lg:w-[min(100%,540px)]">
             <div className="bg-noise" />
             <div className="relative z-10">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">
                 Voice Care Orbit
               </p>
 
-            <div className="voice-orbit">
-              <div className="voice-orbit-ring voice-orbit-ring-1" />
-              <div className="voice-orbit-ring voice-orbit-ring-2" />
+              <div className="mt-5 grid gap-5 sm:grid-cols-[0.95fr_1.05fr] sm:items-center lg:grid-cols-1 xl:grid-cols-[0.95fr_1.05fr]">
+                <div className="voice-orbit">
+                  <div className="voice-orbit-ring voice-orbit-ring-1" />
+                  <div className="voice-orbit-ring voice-orbit-ring-2" />
 
-              <div className="voice-orbit-core">
-                <Mic className="h-5 w-5 text-cyan-200" />
-              </div>
+                  <div className="voice-orbit-core">
+                    <Mic className="h-5 w-5 text-cyan-200" />
+                  </div>
 
-              <div className="voice-orbit-node voice-orbit-node-pos-1 voice-orbit-node--voice">
-                <Mic className="h-4 w-4 text-[#7cecff]" />
-              </div>
-              <div className="voice-orbit-node voice-orbit-node-pos-2 voice-orbit-node--community">
-                <Users className="h-4 w-4 text-[#8fb8ff]" />
-              </div>
-              <div className="voice-orbit-node voice-orbit-node-pos-3 voice-orbit-node--appointment">
-                <Calendar className="h-4 w-4 text-[#b9a8ff]" />
-              </div>
-              <div className="voice-orbit-node voice-orbit-node-pos-4 voice-orbit-node--prescription">
-                <FileText className="h-4 w-4 text-[#ffd26d]" />
-              </div>
-              <div className="voice-orbit-node voice-orbit-node-pos-5 voice-orbit-node--doctor">
-                <MapPin className="h-4 w-4 text-[#78f0ba]" />
-              </div>
-            </div>
+                  <div className="voice-orbit-node voice-orbit-node-pos-1 voice-orbit-node--voice">
+                    <Mic className="h-4 w-4 text-[#7cecff]" />
+                  </div>
+                  <div className="voice-orbit-node voice-orbit-node-pos-2 voice-orbit-node--community">
+                    <Users className="h-4 w-4 text-[#8fb8ff]" />
+                  </div>
+                  <div className="voice-orbit-node voice-orbit-node-pos-3 voice-orbit-node--appointment">
+                    <Calendar className="h-4 w-4 text-[#b9a8ff]" />
+                  </div>
+                  <div className="voice-orbit-node voice-orbit-node-pos-4 voice-orbit-node--prescription">
+                    <FileText className="h-4 w-4 text-[#ffd26d]" />
+                  </div>
+                  <div className="voice-orbit-node voice-orbit-node-pos-5 voice-orbit-node--doctor">
+                    <MapPin className="h-4 w-4 text-[#78f0ba]" />
+                  </div>
+                </div>
 
-            <ul className="voice-orbit-list mt-4 space-y-2">
-              <li className="flex items-center gap-2 text-sm text-slate-200">
-                <Mic className="h-4 w-4 text-cyan-200" />
-                Share your concern by voice
-              </li>
-              <li className="flex items-center gap-2 text-sm text-slate-200">
-                <MapPin className="h-4 w-4 text-emerald-200" />
-                Connect with your local doctor
-              </li>
-              <li className="flex items-center gap-2 text-sm text-slate-200">
-                <Calendar className="h-4 w-4 text-violet-200" />
-                Book with voice appointment assistant
-              </li>
-              <li className="flex items-center gap-2 text-sm text-slate-200">
-                <FileText className="h-4 w-4 text-amber-200" />
-                Get prescription by doctor in chat
-              </li>
-              <li className="flex items-center gap-2 text-sm text-slate-200">
-                <Users className="h-4 w-4 text-blue-200" />
-                Join healthcare community social feed
-              </li>
-            </ul>
+                <ul className="voice-orbit-list grid gap-3">
+                  <li className="flex items-start gap-2 text-sm leading-6 text-slate-200">
+                    <Mic className="mt-1 h-4 w-4 shrink-0 text-cyan-200" />
+                    Share your concern by voice
+                  </li>
+                  <li className="flex items-start gap-2 text-sm leading-6 text-slate-200">
+                    <MapPin className="mt-1 h-4 w-4 shrink-0 text-emerald-200" />
+                    Connect with your local doctor
+                  </li>
+                  <li className="flex items-start gap-2 text-sm leading-6 text-slate-200">
+                    <Calendar className="mt-1 h-4 w-4 shrink-0 text-violet-200" />
+                    Book with voice appointment assistant
+                  </li>
+                  <li className="flex items-start gap-2 text-sm leading-6 text-slate-200">
+                    <FileText className="mt-1 h-4 w-4 shrink-0 text-amber-200" />
+                    Get prescription by doctor in chat
+                  </li>
+                  <li className="flex items-start gap-2 text-sm leading-6 text-slate-200">
+                    <Users className="mt-1 h-4 w-4 shrink-0 text-blue-200" />
+                    Join healthcare community social feed
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

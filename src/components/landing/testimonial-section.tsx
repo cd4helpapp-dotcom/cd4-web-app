@@ -117,7 +117,7 @@ export function TestimonialSection({ items }: TestimonialSectionProps) {
         <SectionHeading
           kicker="Voices"
           title="What people are saying."
-          description="Real feedback from patients and doctors using CD4 AI in everyday care journeys."
+          description="Real feedback from patients and doctors using CD4 in everyday care journeys."
         />
 
         <div ref={scrollerRef} className="testimonials-marquee mt-10">

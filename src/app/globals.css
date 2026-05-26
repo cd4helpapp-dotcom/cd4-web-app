@@ -130,7 +130,7 @@ body {
 .voice-orbit {
   position: relative;
   --orbit-radius: 94px;
-  margin-top: 14px;
+  margin-top: 0;
   height: 236px;
   display: flex;
   align-items: center;
@@ -748,6 +748,44 @@ body {
 
 .download-card:active {
   transform: translateY(-2px) scale(0.995);
+}
+
+.footer-instagram-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.footer-instagram-card::after {
+  content: "";
+  position: absolute;
+  inset: -28%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 22% 18%, rgba(6, 182, 212, 0.26), transparent 34%),
+    radial-gradient(circle at 78% 24%, rgba(236, 72, 153, 0.22), transparent 32%),
+    radial-gradient(circle at 52% 84%, rgba(139, 92, 246, 0.2), transparent 34%);
+  opacity: 0.55;
+  filter: blur(24px);
+  transform: scale(1);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .footer-instagram-card {
+    transform: translateY(-4px) scale(1.006);
+    border-color: rgba(103, 232, 249, 0.34);
+    box-shadow:
+      0 26px 72px -36px rgba(6, 182, 212, 0.5),
+      0 24px 66px -42px rgba(236, 72, 153, 0.42);
+  }
+
+  .footer-instagram-card::before {
+    opacity: 1;
+  }
+
+  .footer-instagram-card::after {
+    opacity: 0.82;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
