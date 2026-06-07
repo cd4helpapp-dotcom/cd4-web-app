@@ -39,7 +39,7 @@ export function HospitalOnboardingSubmitForm({ children }: HospitalOnboardingSub
       setSubmitState({
         type: "error",
         message:
-          "Supabase configuration is missing in the running app. Check .env.local, then restart npm run dev."
+          "Supabase configuration is missing. Please configure the production environment variables and redeploy."
       });
       return;
     }
