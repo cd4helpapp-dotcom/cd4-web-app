@@ -10,6 +10,7 @@ export const landingContent: LandingContent = {
     { label: "How It Works", href: "#journey" },
     { label: "Why CD4", href: "#why-cd4-ai" },
     { label: "Voices", href: "#testimonials" },
+    { label: "Hospitals", href: "/hospital-onboarding" },
     { label: "Download", href: "#download" },
     { label: "FAQ", href: "#faq" }
   ],

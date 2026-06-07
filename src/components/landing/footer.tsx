@@ -14,6 +14,7 @@ export function Footer({ appName }: FooterProps) {
     { label: "Features", href: "#features" },
     { label: "How It Works", href: "#journey" },
     { label: "Why CD4", href: "#why-cd4-ai" },
+    { label: "Hospital Onboarding", href: "/hospital-onboarding" },
     { label: "Download", href: "#download" },
     { label: "FAQ", href: "#faq" }
   ];
