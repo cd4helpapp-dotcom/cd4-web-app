@@ -5,10 +5,12 @@ import Link from "next/link";
 import {
   ArrowLeft,
   Building2,
-  CalendarClock,
+  Clock3,
   ClipboardCheck,
+  ExternalLink,
   FileCheck2,
   Hospital,
+  KeyRound,
   MapPin,
   Phone,
   Send,
@@ -47,12 +49,13 @@ export const metadata: Metadata = {
 };
 
 const inputClass =
-  "min-h-11 w-full rounded-xl border border-white/10 bg-white/[0.055] px-3.5 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/60 focus:bg-white/[0.075] focus:ring-4 focus:ring-cyan-300/10";
+  "min-h-11 w-full rounded-xl border border-white/10 bg-white/[0.055] px-3.5 py-3 text-sm text-white outline-none transition [color-scheme:dark] placeholder:text-slate-500 focus:border-cyan-300/60 focus:bg-white/[0.075] focus:ring-4 focus:ring-cyan-300/10";
 
 const quickPoints = [
   "Hospital identity",
   "Registration proof",
   "Authorized contact",
+  "App login setup",
   "Services and OPD setup"
 ];
 
@@ -135,6 +138,50 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   name: string;
   hint?: string;
+}
+
+interface LinkInputProps extends TextInputProps {
+  actionHref: string;
+  actionLabel: string;
+}
+
+function LinkInput({
+  actionHref,
+  actionLabel,
+  label,
+  name,
+  hint,
+  className,
+  required,
+  ...props
+}: LinkInputProps) {
+  return (
+    <div className="grid gap-2">
+      <div className="flex items-center justify-between gap-3">
+        <label htmlFor={name} className="text-sm font-semibold text-slate-100">
+          {label}
+          {required ? <span className="text-cyan-300"> *</span> : null}
+        </label>
+        <a
+          href={actionHref}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-semibold text-cyan-100 transition hover:border-cyan-300/40"
+        >
+          {actionLabel}
+          <ExternalLink className="h-3 w-3" />
+        </a>
+      </div>
+      <input
+        id={name}
+        name={name}
+        required={required}
+        className={cn(inputClass, className)}
+        {...props}
+      />
+      {hint ? <p className="text-xs leading-5 text-slate-500">{hint}</p> : null}
+    </div>
+  );
 }
 
 function TextInput({ label, name, hint, className, required, ...props }: TextInputProps) {
@@ -296,7 +343,7 @@ function HospitalOnboardingPage() {
             </aside>
           </div>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {quickPoints.map((point) => (
               <div key={point} className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3">
                 <p className="text-sm font-semibold text-white">{point}</p>
@@ -350,6 +397,7 @@ function HospitalOnboardingPage() {
                 label="Registration expiry date"
                 name="registration_expiry"
                 type="date"
+                hint="Use the date picker to select certificate validity."
               />
               <FileField
                 label="Registration certificate"
@@ -381,11 +429,14 @@ function HospitalOnboardingPage() {
                 placeholder="160047"
                 required
               />
-              <TextInput
+              <LinkInput
                 label="Google Maps link"
                 name="google_maps_link"
                 type="url"
                 placeholder="https://maps.google.com/..."
+                hint="Paste the public Google Maps share link for the hospital location."
+                actionHref="https://www.google.com/maps"
+                actionLabel="Open Maps"
               />
             </FormSection>
 
@@ -424,7 +475,37 @@ function HospitalOnboardingPage() {
               />
             </FormSection>
 
-            <FormSection title="Services and OPD setup" eyebrow="Step 05" icon={Stethoscope}>
+            <FormSection title="Hospital admin account" eyebrow="Step 05" icon={KeyRound}>
+              <TextInput
+                label="Login email"
+                name="hospital_login_email"
+                type="email"
+                autoComplete="username"
+                placeholder="admin@hospital.com"
+                hint="This email will be used by the hospital admin to sign in to the CD4 app."
+                required
+              />
+              <TextInput
+                label="Create password"
+                name="hospital_login_password"
+                type="password"
+                autoComplete="new-password"
+                minLength={8}
+                placeholder="Minimum 8 characters"
+                required
+              />
+              <TextInput
+                label="Confirm password"
+                name="hospital_login_password_confirm"
+                type="password"
+                autoComplete="new-password"
+                minLength={8}
+                placeholder="Re-enter password"
+                required
+              />
+            </FormSection>
+
+            <FormSection title="Services and OPD setup" eyebrow="Step 06" icon={Stethoscope}>
               <CheckboxGroup
                 legend="Specialities / departments"
                 name="specialities"
@@ -439,9 +520,21 @@ function HospitalOnboardingPage() {
                 required
               />
               <TextInput
-                label="OPD timings"
-                name="opd_timings"
-                placeholder="Mon-Sat, 9 AM - 7 PM"
+                label="OPD days"
+                name="opd_days"
+                placeholder="Mon-Sat"
+                required
+              />
+              <TextInput
+                label="OPD start time"
+                name="opd_start_time"
+                type="time"
+                required
+              />
+              <TextInput
+                label="OPD end time"
+                name="opd_end_time"
+                type="time"
                 required
               />
               <TextInput
@@ -496,7 +589,7 @@ function HospitalOnboardingPage() {
 
             <div className="flex flex-col gap-3 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-start gap-2 text-xs leading-5 text-slate-500">
-                <CalendarClock className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                <Clock3 className="mt-0.5 h-3.5 w-3.5 shrink-0" />
                 <p>CD4 will review the request and contact the authorized person for next steps.</p>
               </div>
               <button

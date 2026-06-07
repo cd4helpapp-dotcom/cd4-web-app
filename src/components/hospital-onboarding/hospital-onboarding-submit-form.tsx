@@ -38,7 +38,8 @@ export function HospitalOnboardingSubmitForm({ children }: HospitalOnboardingSub
     if (!endpoint || !anonKey) {
       setSubmitState({
         type: "error",
-        message: "Supabase configuration is missing. Please check web app environment variables."
+        message:
+          "Supabase configuration is missing in the running app. Check .env.local, then restart npm run dev."
       });
       return;
     }
@@ -46,6 +47,35 @@ export function HospitalOnboardingSubmitForm({ children }: HospitalOnboardingSub
     const form = event.currentTarget;
     const formData = new FormData(form);
     formData.delete("form-name");
+
+    const opdDays = String(formData.get("opd_days") || "").trim();
+    const opdStartTime = String(formData.get("opd_start_time") || "").trim();
+    const opdEndTime = String(formData.get("opd_end_time") || "").trim();
+    if (!opdDays || !opdStartTime || !opdEndTime) {
+      setSubmitState({
+        type: "error",
+        message: "Please enter OPD days, start time, and end time."
+      });
+      return;
+    }
+    formData.set("opd_timings", `${opdDays}, ${opdStartTime} - ${opdEndTime}`);
+
+    const password = String(formData.get("hospital_login_password") || "");
+    const confirmPassword = String(formData.get("hospital_login_password_confirm") || "");
+    if (password.length < 8) {
+      setSubmitState({
+        type: "error",
+        message: "Hospital admin password must be at least 8 characters."
+      });
+      return;
+    }
+    if (password !== confirmPassword) {
+      setSubmitState({
+        type: "error",
+        message: "Hospital admin password and confirm password do not match."
+      });
+      return;
+    }
 
     setIsSubmitting(true);
     setSubmitState({ type: "idle", message: "" });
