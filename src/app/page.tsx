@@ -3,6 +3,7 @@ import { FaqSection } from "@/components/landing/faq-section";
 import { FeatureGrid } from "@/components/landing/feature-grid";
 import { Footer } from "@/components/landing/footer";
 import { HeroSection } from "@/components/landing/hero-section";
+import { HospitalPartnerSection } from "@/components/landing/hospital-partner-section";
 import { JourneySection } from "@/components/landing/journey-section";
 import { NameStorySection } from "@/components/landing/name-story-section";
 import { Navbar } from "@/components/landing/navbar";
@@ -32,6 +33,8 @@ export default function HomePage() {
       <JourneySection steps={landingContent.journey} />
       <div className="section-separator" aria-hidden />
       <RoleSection roles={landingContent.roles} />
+      <div className="section-separator" aria-hidden />
+      <HospitalPartnerSection />
       <div className="section-separator" aria-hidden />
       <TestimonialSection items={landingContent.testimonials} />
       <div className="section-separator" aria-hidden />
