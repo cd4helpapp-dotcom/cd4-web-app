@@ -72,7 +72,8 @@ export default function PrivacyPolicyPage() {
             </PolicySection>
 
             <PolicySection title="2. How We Use Your Information">
-              <p>We use information to facilitate teleconsultations, provide preliminary AI health guidance and triage, manage appointments and reminders, organize prescriptions and records, send relevant alerts, prevent fraud, maintain data integrity, and comply with applicable legal and healthcare requirements.</p>
+              <p>We use information to facilitate teleconsultations, help users find and filter verified doctors, provide preliminary AI health guidance and triage, create an AI-assisted history snapshot for the doctor before a consultation, manage appointments and reminders, organize prescriptions and records, support secure patient-doctor chat, send relevant alerts, prevent fraud, maintain data integrity, and comply with applicable legal and healthcare requirements.</p>
+              <p>The AI history snapshot is intended to organize symptoms and information shared by the user. It is provided to support the doctor’s understanding before or during a consultation and does not make the medical decision.</p>
             </PolicySection>
 
             <PolicySection title="3. Permissions We Request and Why">
@@ -92,7 +93,9 @@ export default function PrivacyPolicyPage() {
             </PolicySection>
 
             <PolicySection title="5. Data Security and Storage">
-              <p>Data transmitted between your device and our servers is protected with industry-standard TLS/SSL (HTTPS/WSS) encryption. Health records and sensitive personal data are stored in secure databases with strict role-based access controls. Audio from AI voice sessions and speech recognition is processed in real time and is not used for behavioral advertising.</p>
+              <p>CD4 AI uses industry-standard security measures to protect your information. Data transmitted between your device and our servers, including chat conversations and teleconsultation communication, is protected using TLS/SSL encryption over HTTPS/WSS. Health records, AI history snapshots, chat data, and other sensitive personal data are stored in secure databases with strict role-based access controls.</p>
+              <p>Access to health information is limited to the people and service providers who need it to operate the requested healthcare features. Audio from AI voice sessions and speech recognition is processed in real time and is not used for behavioral advertising.</p>
+              <p>We work to protect your information, but no internet transmission or storage system can be guaranteed to be completely secure. We continuously review and improve our technical and organizational safeguards.</p>
             </PolicySection>
 
             <PolicySection title="6. Data Retention and Account Deletion">
@@ -102,7 +105,9 @@ export default function PrivacyPolicyPage() {
 
             <PolicySection title="7. Medical and Emergency Disclaimer">
               <p><strong className="text-amber-200">Important:</strong> CD4 is a healthcare technology platform connecting users with licensed doctors and providing AI-assisted health information.</p>
-              <p>The AI Voice Assistant and report summaries are informational and support triage only; they do not constitute medical advice, diagnosis, or treatment. In an emergency, immediately contact local emergency services (such as 112, 102, or 108 in India) or visit the nearest emergency room.</p>
+              <p>CD4 AI does not prescribe medicines, recommend a medicine or dosage, diagnose a medical condition, or replace a licensed doctor. The AI Voice Assistant and report summaries are informational and support preliminary triage only; they do not constitute medical advice, diagnosis, or treatment.</p>
+              <p>Users should consult a licensed doctor for medical evaluation. Any diagnosis, medicine, dosage, treatment, or care decision is made solely by the doctor after consultation and is the doctor’s professional responsibility. Do not start, stop, or change any medicine based only on CD4 AI information.</p>
+              <p>In an emergency, immediately contact local emergency services (such as 112, 102, or 108 in India) or visit the nearest emergency room.</p>
             </PolicySection>
 
             <PolicySection title="8. Children’s Privacy">
