@@ -13,10 +13,9 @@ export function Footer({ appName }: FooterProps) {
   const links = [
     { label: "Features", href: "#features" },
     { label: "How It Works", href: "#journey" },
-    { label: "Why CD4", href: "#why-cd4-ai" },
     { label: "Hospital Onboarding", href: "/hospital-onboarding" },
     { label: "Download", href: "#download" },
-    { label: "FAQ", href: "#faq" }
+    { label: "Privacy Policy", href: "/privacy-policy" }
   ];
 
   return (
@@ -38,6 +37,12 @@ export function Footer({ appName }: FooterProps) {
             <p className="mt-4 max-w-md text-sm leading-6 text-slate-400">
               CD4 is an India-wide AI-based healthcare platform for voice booking, AI symptom context, report understanding, and follow-up care.
             </p>
+            <a
+              href="mailto:cd4help.app@gmail.com"
+              className="mt-3 inline-flex text-sm font-medium text-cyan-200 transition hover:text-white"
+            >
+              cd4help.app@gmail.com
+            </a>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2">
               <address className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 not-italic">
