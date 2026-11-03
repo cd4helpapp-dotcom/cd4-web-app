@@ -740,8 +740,13 @@ summary:focus-visible {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  padding: 5.5rem 1.5rem max(1.5rem, env(safe-area-inset-bottom));
-  background: rgba(7, 20, 38, 0.98);
+  padding: 4.75rem 1.25rem max(1.5rem, calc(env(safe-area-inset-bottom) + 1.25rem));
+  background: #040914;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0.25s ease;
@@ -754,18 +759,19 @@ summary:focus-visible {
 
 .nav-sheet-link {
   display: flex;
-  min-height: 3.5rem;
+  min-height: 2.875rem;
+  padding: 0.625rem 0.25rem;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(234, 245, 255, 0.1);
+  border-bottom: 1px solid rgba(234, 245, 255, 0.08);
   font-family: var(--font-heading);
-  font-size: 1.375rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   color: #fff;
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transform: translateY(10px);
+  transition: opacity 0.28s ease, transform 0.28s ease, color 0.15s ease;
 }
 
 .nav-sheet.is-open .nav-sheet-link {
@@ -774,6 +780,11 @@ summary:focus-visible {
 }
 
 .nav-sheet-link[aria-current="location"] {
+  color: var(--cyan);
+}
+
+.nav-sheet-link:hover,
+.nav-sheet-link:active {
   color: var(--cyan);
 }
 

@@ -128,26 +128,30 @@ export function Navbar({ appName, navItems }: NavbarProps) {
       </div>
 
       <div id="mobile-menu" className={cn("nav-sheet lg:hidden", isMenuOpen && "is-open")} inert={!isMenuOpen}>
-        <nav aria-label="Mobile" className="flex flex-1 flex-col justify-center">
-          {navItems.map((item, index) => (
-            <a
-              key={item.href}
-              ref={index === 0 ? firstLink : undefined}
-              href={item.href}
-              onClick={(event) => handleAnchorClick(event, item.href)}
-              aria-current={activeHref === item.href ? "location" : undefined}
-              className="nav-sheet-link"
-              style={{ transitionDelay: isMenuOpen ? `${60 + index * 35}ms` : "0ms" }}
-            >
-              {item.label}
-              <ArrowRight className="h-5 w-5 text-[#37D6E8]" />
+        <div className="mx-auto flex w-full max-w-lg flex-1 flex-col justify-between pt-2 pb-1">
+          <nav aria-label="Mobile" className="flex flex-col">
+            {navItems.map((item, index) => (
+              <a
+                key={item.href}
+                ref={index === 0 ? firstLink : undefined}
+                href={item.href}
+                onClick={(event) => handleAnchorClick(event, item.href)}
+                aria-current={activeHref === item.href ? "location" : undefined}
+                className="nav-sheet-link group"
+                style={{ transitionDelay: isMenuOpen ? `${40 + index * 25}ms` : "0ms" }}
+              >
+                <span>{item.label}</span>
+                <ArrowRight className="h-4 w-4 text-[#37D6E8] transition-transform duration-200 group-hover:translate-x-1 group-active:translate-x-1" />
+              </a>
+            ))}
+          </nav>
+          <div className="mt-6 pt-2 pb-1">
+            <a href="#download" onClick={(event) => handleAnchorClick(event, "#download")} className="btn-primary w-full shadow-lg shadow-cyan-500/15">
+              Get the app
+              <ArrowUpRight className="h-4 w-4" />
             </a>
-          ))}
-        </nav>
-        <a href="#download" onClick={(event) => handleAnchorClick(event, "#download")} className="btn-primary w-full">
-          Get the app
-          <ArrowUpRight className="h-4 w-4" />
-        </a>
+          </div>
+        </div>
       </div>
     </header>
   );

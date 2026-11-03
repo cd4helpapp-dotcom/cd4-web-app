@@ -19,7 +19,7 @@ export type DemoReply =
   | { type: "off_topic"; text: string };
 
 export const DEMO_LIMITS = {
-  freeChats: 3,
+  freeChats: 10,
   messageChars: 500,
   messages: 14,
   userTurnsBeforeSnapshot: 6

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 
 export function PageLoader() {
@@ -22,7 +21,6 @@ export function PageLoader() {
 
   return (
     <div ref={overlay} className="page-loader" aria-hidden>
-      <Image src="/images/cd4-logo-nav.png" alt="" width={56} height={56} className="rounded-2xl" unoptimized />
       <span className="page-loader-line" />
     </div>
   );
