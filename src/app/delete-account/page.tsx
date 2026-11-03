@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 
 export default function DeleteAccountPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
-      <header className="border-b border-white/10 bg-[rgba(7,9,15,0.92)]">
+    <main className="min-h-screen bg-[#071426] text-slate-100">
+      <header className="border-b border-white/10 bg-[rgba(7,20,38,0.92)]">
         <Container className="flex min-h-16 items-center justify-between gap-4">
           <Link href="/" className="inline-flex items-center gap-3">
             <Image src="/images/cd4-logo-nav.png" alt="CD4 AI logo" width={40} height={40} className="rounded-xl object-contain" unoptimized />

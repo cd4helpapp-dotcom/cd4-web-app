@@ -10,8 +10,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "CD4 is an AI-based healthcare platform for voice doctor booking, AI-ready history snapshots, report understanding, prescriptions, and follow-up care.",
     start_url: "/",
     display: "standalone",
-    background_color: "#07090f",
-    theme_color: "#07090f",
+    background_color: "#071426",
+    theme_color: "#071426",
     icons: [
       {
         src: "/images/cd4-logo.png",

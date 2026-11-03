@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SquareArrowUp } from "lucide-react";
+import { scrollToTop } from "@/lib/smooth-scroll";
 
 const SHOW_AFTER_PX = 520;
 
@@ -26,10 +27,6 @@ export function ScrollToTopButton() {
       window.removeEventListener("scroll", updateVisibility);
     };
   }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
     <button

@@ -1,47 +1,50 @@
-import { DownloadSection } from "@/components/landing/download-section";
-import { FaqSection } from "@/components/landing/faq-section";
-import { FeatureGrid } from "@/components/landing/feature-grid";
+import { MotionConfig } from "@/components/experience/motion-config";
+import { CursorRing, PageLoader } from "@/components/experience/page-chrome";
+import { ExperienceProvider } from "@/components/experience/experience-provider";
 import { Footer } from "@/components/landing/footer";
-import { HeroSection } from "@/components/landing/hero-section";
-import { HospitalPartnerSection } from "@/components/landing/hospital-partner-section";
-import { JourneySection } from "@/components/landing/journey-section";
-import { NameStorySection } from "@/components/landing/name-story-section";
 import { Navbar } from "@/components/landing/navbar";
-import { RoleSection } from "@/components/landing/role-section";
-import { TestimonialSection } from "@/components/landing/testimonial-section";
+import { AppSection, EcosystemSection, FinalCta } from "@/components/landing/story-bottom";
+import { CapabilitiesSection, FaqSection, HowSection, RolesSection } from "@/components/landing/story-motion";
+import { DoctorsSection, HospitalSection, TestimonialsSection, VoiceSection } from "@/components/landing/story-static";
+import { DemoSection } from "@/components/landing/story-demo";
+import { HeroSection, ReportsSection, SnapshotSection, WhySection } from "@/components/landing/story-top";
 import { landingContent } from "@/content/landing";
 import { resolveDownloadLinks } from "@/lib/site-links";
 
 export default function HomePage() {
   const downloadLinks = resolveDownloadLinks(landingContent.downloads);
+  const approvedTestimonials = landingContent.testimonials.filter((item) => item.approved);
+  const navItems = approvedTestimonials.length
+    ? [...landingContent.nav.slice(0, 5), { label: "Voices", href: "#testimonials" }, ...landingContent.nav.slice(5)]
+    : landingContent.nav;
 
   return (
-    <main>
-      <Navbar appName={landingContent.appName} navItems={landingContent.nav} />
-      <HeroSection
-        appName={landingContent.appName}
-        tagline={landingContent.tagline}
-        description={landingContent.description}
-        stats={landingContent.heroStats}
-        highlights={landingContent.featureHighlights}
-      />
-      <div className="section-separator" aria-hidden />
-      <NameStorySection />
-      <div className="section-separator" aria-hidden />
-      <FeatureGrid features={landingContent.features} />
-      <div className="section-separator" aria-hidden />
-      <JourneySection steps={landingContent.journey} />
-      <div className="section-separator" aria-hidden />
-      <RoleSection roles={landingContent.roles} />
-      <div className="section-separator" aria-hidden />
-      <HospitalPartnerSection />
-      <div className="section-separator" aria-hidden />
-      <TestimonialSection items={landingContent.testimonials} />
-      <div className="section-separator" aria-hidden />
-      <DownloadSection links={downloadLinks} />
-      <div className="section-separator" aria-hidden />
-      <FaqSection items={landingContent.faqs} />
+    <>
+      <PageLoader />
+      <ExperienceProvider />
+      <CursorRing />
+      <Navbar appName={landingContent.appName} navItems={navItems} />
+      <MotionConfig>
+      <main className="relative z-10">
+        <HeroSection stats={landingContent.heroStats} />
+        <WhySection />
+        <CapabilitiesSection />
+        <VoiceSection />
+        <SnapshotSection />
+        <DemoSection />
+        <DoctorsSection />
+        <ReportsSection />
+        <EcosystemSection />
+        <HowSection />
+        <RolesSection />
+        <HospitalSection />
+        <TestimonialsSection items={approvedTestimonials} />
+        <AppSection links={downloadLinks} />
+        <FaqSection items={landingContent.faqs} />
+        <FinalCta />
+      </main>
+      </MotionConfig>
       <Footer appName={landingContent.appName} />
-    </main>
+    </>
   );
 }

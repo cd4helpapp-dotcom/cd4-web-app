@@ -61,7 +61,7 @@ const quickPoints = [
 
 function PageHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-[rgba(7,9,15,0.92)] backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-[rgba(7,20,38,0.92)] backdrop-blur-xl">
       <Container className="flex min-h-16 items-center justify-between gap-4">
         <Link href="/" className="inline-flex items-center gap-3">
           <Image

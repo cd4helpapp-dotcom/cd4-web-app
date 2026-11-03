@@ -6,11 +6,11 @@ export const landingContent: LandingContent = {
   description:
     "CD4 is an India-wide AI-based healthcare platform that helps patients book doctor appointments by voice, share AI-structured symptom history, understand health reports and prescriptions, and continue follow-up care in one connected app.",
   nav: [
-    { label: "Features", href: "#features" },
-    { label: "How It Works", href: "#journey" },
     { label: "Why CD4", href: "#why-cd4-ai" },
-    { label: "Voices", href: "#testimonials" },
-    { label: "Hospitals", href: "/hospital-onboarding" },
+    { label: "Features", href: "#features" },
+    { label: "Try Demo", href: "#try-demo" },
+    { label: "How It Works", href: "#journey" },
+    { label: "Hospitals", href: "#hospital-partners" },
     { label: "Download", href: "#download" },
     { label: "FAQ", href: "#faq" }
   ],
@@ -126,35 +126,40 @@ export const landingContent: LandingContent = {
         "I spoke once in the app and my doctor already understood my case before the call started. The experience felt effortless.",
       name: "Ananya Mehta",
       role: "Patient, Bengaluru",
-      initials: "AM"
+      initials: "AM",
+      approved: false
     },
     {
       quote:
         "The AI snapshot saves visit time and helps me focus on treatment decisions instead of repeating basic history questions.",
       name: "Dr. Ravi Shankar",
       role: "General Physician, Mumbai",
-      initials: "DR"
+      initials: "DR",
+      approved: false
     },
     {
       quote:
         "My prescription and reports were explained in simple language, so I finally knew exactly what to do next.",
       name: "Suresh Kumar",
       role: "Patient, Lucknow",
-      initials: "SK"
+      initials: "SK",
+      approved: false
     },
     {
       quote:
         "I can book quickly, get follow-up in one place, and stay consistent with treatment. It feels built for real patients.",
       name: "Priya Nair",
       role: "Patient, Kochi",
-      initials: "PN"
+      initials: "PN",
+      approved: false
     },
     {
       quote:
         "The community feed adds real value. Patients share recovery journeys, and doctors can guide with practical health awareness.",
       name: "Dr. Kavitha Iyer",
       role: "Dermatologist, Chennai",
-      initials: "DK"
+      initials: "DK",
+      approved: false
     }
   ],
   downloads: [
@@ -181,6 +186,11 @@ export const landingContent: LandingContent = {
     }
   ],
   faqs: [
+    {
+      question: "How does AI health history work?",
+      answer:
+        "You describe your symptoms by voice or text. CD4 AI organizes what you share into a clear summary and timeline for the doctor to review. It organizes information and does not diagnose."
+    },
     {
       question: "What is CD4?",
       answer:

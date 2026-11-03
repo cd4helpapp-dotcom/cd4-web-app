@@ -120,6 +120,7 @@ export function HospitalOnboardingSubmitForm({ children }: HospitalOnboardingSub
   return (
     <form
       name="hospital-onboarding"
+      method="post"
       encType="multipart/form-data"
       onSubmit={handleSubmit}
       aria-busy={isSubmitting}

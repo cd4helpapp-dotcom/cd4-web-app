@@ -1,7 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { DM_Sans, Instrument_Serif, Manrope } from "next/font/google";
 import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
 import { TouchGlowProvider } from "@/components/shared/touch-glow-provider";
 import "./globals.css";
+import "./experience.css";
+
+const headingFont = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
+const bodyFont = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
+const accentFont = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-instrument", display: "swap" });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cd4.co.in";
 const siteName = "CD4";
@@ -174,6 +180,11 @@ const jsonLd = {
   ]
 };
 
+export const viewport: Viewport = {
+  themeColor: "#071426",
+  colorScheme: "dark"
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: appName,
@@ -268,7 +279,7 @@ export default function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${headingFont.variable} ${bodyFont.variable} ${accentFont.variable}`}>
       <body className="antialiased">
         {children}
         <TouchGlowProvider />

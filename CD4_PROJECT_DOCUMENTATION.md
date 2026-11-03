@@ -159,3 +159,17 @@ npm run typecheck
 npm run lint
 npm run build
 ```
+
+## 3D experience and live demo
+
+- The home page runs on one fixed WebGL canvas (`src/components/experience`), driven by scroll through `src/lib/scene-store.ts`. Each section with `data-stage` has a pose in that file.
+- Motion: GSAP ScrollTrigger for scroll, Lenis for smooth scrolling, Framer Motion for small interface transitions, React Three Fiber for 3D.
+- With reduced motion, or without WebGL, the page shows a static version with all its content.
+- To show a testimonial, set `approved: true` in `src/content/landing.ts`, only after the person has agreed.
+
+The site now needs a server, because the demo at `src/app/api/demo/route.ts` runs on one, so it is no longer a static export. It is built for Vercel.
+
+| Variable | Where | Purpose |
+|---|---|---|
+| `GROQ_API_KEY` | Vercel and `.env.local` | Powers the demo. Never add a `NEXT_PUBLIC_` prefix |
+| `GROQ_MODEL` | Optional | Overrides the default model if Groq retires it |

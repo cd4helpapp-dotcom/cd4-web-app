@@ -1,11 +1,12 @@
 "use client";
 
-import { MouseEvent, useEffect, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import { Container } from "@/components/shared/container";
+import { ArrowRight, ArrowUpRight, Menu, X } from "lucide-react";
+import { cn } from "@/lib/cn";
+import { scrollToId, scrollToTop, setScrollLocked } from "@/lib/smooth-scroll";
 import { NavItem } from "@/types/landing";
 
 interface NavbarProps {
@@ -16,155 +17,138 @@ interface NavbarProps {
 export function Navbar({ appName, navItems }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const mobileHiddenSections = new Set(["#why-cd4-ai", "#faq"]);
-  const mobileNavItems = navItems.filter((item) => !mobileHiddenSections.has(item.href));
+  const [activeHref, setActiveHref] = useState("");
+  const toggle = useRef<HTMLButtonElement>(null);
+  const firstLink = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    setScrollLocked(isMenuOpen);
+    if (isMenuOpen) firstLink.current?.focus();
+    return () => setScrollLocked(false);
   }, [isMenuOpen]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    if (!isMenuOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+        toggle.current?.focus();
+      }
     };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Marks the section currently in the middle of the screen.
+  useEffect(() => {
+    const sections = navItems
+      .filter((item) => item.href.startsWith("#"))
+      .map((item) => document.getElementById(item.href.slice(1)))
+      .filter((element): element is HTMLElement => Boolean(element));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveHref(`#${entry.target.id}`);
+          else setActiveHref((current) => (current === `#${entry.target.id}` ? "" : current));
+        });
+      },
+      { rootMargin: "-48% 0px -48% 0px" }
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [navItems]);
+
   const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (!href.startsWith("#")) {
-      setIsMenuOpen(false);
-      return;
-    }
-
-    event.preventDefault();
     setIsMenuOpen(false);
-
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-
-    const sectionId = href.slice(1);
-    const target = document.getElementById(sectionId);
-
-    if (!target) {
-      return;
-    }
-
-    const headerOffset = 80;
-    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-
-    window.scrollTo({
-      top: Math.max(top, 0),
-      behavior: "smooth"
+    if (!href.startsWith("#")) return;
+    event.preventDefault();
+    // The menu releases the page lock on its next render, so the scroll waits for that.
+    window.requestAnimationFrame(() => {
+      if (scrollToId(href.slice(1))) window.history.replaceState(null, "", href);
     });
-    window.history.replaceState(null, "", href);
   };
 
   const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     setIsMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToTop();
     window.history.replaceState(null, "", window.location.pathname);
   };
 
   return (
-    <motion.header 
-      initial={false}
-      animate={{
-        backgroundColor: isScrolled ? "rgba(7,9,15,0.95)" : "rgba(7,9,15,0)",
-        backdropFilter: isScrolled ? "blur(16px)" : "blur(0px)",
-        borderColor: isScrolled ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0)",
-        paddingTop: isScrolled ? "0px" : "8px",
-        paddingBottom: isScrolled ? "0px" : "8px",
-      }}
-      transition={{ duration: 0.3 }}
-      className="sticky top-0 z-50 border-b"
-    >
-      <Container className="flex h-16 items-center justify-between">
-        <Link
-          href="/"
-          onClick={handleLogoClick}
-          className="inline-flex items-center gap-3"
-        >
-          <Image
-            src="/images/cd4-logo-nav.png"
-            alt={`${appName} logo`}
-            width={40}
-            height={40}
-            className="rounded-xl object-contain shadow-[0_8px_20px_-10px_rgba(0,0,0,0.8)]"
-            unoptimized
-          />
-          <span className="font-heading text-lg font-semibold text-white">{appName}</span>
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+      <span data-scroll-progress className="scroll-progress" aria-hidden />
+      <div className={cn("nav-shell mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 pl-3 pr-2 sm:h-16 sm:pl-4", isScrolled && "is-scrolled")}>
+        <Link href="/" onClick={handleLogoClick} className="inline-flex shrink-0 items-center gap-2.5 rounded-xl" aria-label={`${appName} home`}>
+          <Image src="/images/cd4-logo-nav.png" alt="" width={36} height={36} className="rounded-[0.625rem] object-contain" unoptimized />
+          <span className="font-heading text-base font-bold tracking-tight text-white sm:text-lg">{appName}</span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={(event) => handleAnchorClick(event, item.href)}
-              className="text-sm font-medium text-slate-300 transition hover:text-white"
+              aria-current={activeHref === item.href ? "location" : undefined}
+              className={cn("nav-link", activeHref === item.href && "is-active")}
             >
-              {item.label}
+              {activeHref === item.href ? (
+                <motion.span layoutId="nav-active" className="nav-active" transition={{ type: "spring", stiffness: 380, damping: 32 }} />
+              ) : null}
+              <span className="relative">{item.label}</span>
             </a>
           ))}
         </nav>
 
-        <a
-          href="#download"
-          onClick={(event) => handleAnchorClick(event, "#download")}
-          className="hidden items-center gap-2 rounded-full bg-gradient-to-r from-violet-500 to-emerald-500 px-4 py-2 text-sm font-semibold text-white transition hover:shadow-[0_10px_30px_rgba(139,92,246,0.35)] md:inline-flex"
-        >
-          Get App
-          <ArrowUpRight className="h-4 w-4" />
-        </a>
-
-        <button
-          type="button"
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isMenuOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setIsMenuOpen((previous) => !previous)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-slate-100 transition hover:border-white/30 hover:text-white md:hidden"
-        >
-          {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </Container>
-
-      <div
-        id="mobile-menu"
-        className={`absolute left-0 right-0 top-full overflow-hidden border-t border-white/10 bg-[rgba(7,9,15,0.97)] shadow-[0_24px_60px_-30px_rgba(0,0,0,0.85)] transition-[max-height,opacity] duration-300 md:hidden ${
-          isMenuOpen ? "max-h-[22rem] opacity-100" : "pointer-events-none max-h-0 opacity-0"
-        }`}
-      >
-        <Container className="py-3">
-          {mobileNavItems.map((item) => (
-            <a
-              key={`mobile-${item.href}`}
-              href={item.href}
-              onClick={(event) => handleAnchorClick(event, item.href)}
-              className="block border-b border-white/10 px-1 py-3 text-base font-medium text-slate-300 transition hover:text-white"
-            >
-              {item.label}
-            </a>
-          ))}
-
-          <a
-            href="#download"
-            onClick={(event) => handleAnchorClick(event, "#download")}
-            className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-500 to-emerald-500 px-5 py-3 text-sm font-semibold text-white transition hover:shadow-[0_10px_30px_rgba(139,92,246,0.35)]"
-          >
+        <div className="flex items-center gap-2">
+          <a href="#download" onClick={(event) => handleAnchorClick(event, "#download")} className="nav-cta hidden sm:inline-flex">
             Get App
             <ArrowUpRight className="h-4 w-4" />
           </a>
-        </Container>
+          <button
+            ref={toggle}
+            type="button"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setIsMenuOpen((previous) => !previous)}
+            className="nav-toggle lg:hidden"
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
-    </motion.header>
+
+      <div id="mobile-menu" className={cn("nav-sheet lg:hidden", isMenuOpen && "is-open")} inert={!isMenuOpen}>
+        <nav aria-label="Mobile" className="flex flex-1 flex-col justify-center">
+          {navItems.map((item, index) => (
+            <a
+              key={item.href}
+              ref={index === 0 ? firstLink : undefined}
+              href={item.href}
+              onClick={(event) => handleAnchorClick(event, item.href)}
+              aria-current={activeHref === item.href ? "location" : undefined}
+              className="nav-sheet-link"
+              style={{ transitionDelay: isMenuOpen ? `${60 + index * 35}ms` : "0ms" }}
+            >
+              {item.label}
+              <ArrowRight className="h-5 w-5 text-[#37D6E8]" />
+            </a>
+          ))}
+        </nav>
+        <a href="#download" onClick={(event) => handleAnchorClick(event, "#download")} className="btn-primary w-full">
+          Get the app
+          <ArrowUpRight className="h-4 w-4" />
+        </a>
+      </div>
+    </header>
   );
 }
