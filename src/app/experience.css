@@ -1166,7 +1166,7 @@ summary:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.25rem;
+  gap: 1.75rem;
   background: var(--navy-deep);
   transition: opacity 0.5s ease, visibility 0.5s ease;
   /* Clears itself even if JavaScript never runs. */
@@ -1176,15 +1176,65 @@ summary:focus-visible {
 .page-loader.is-done {
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
+}
+
+.page-loader-brand {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.page-loader-3d-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 700px;
+}
+
+.page-loader-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14rem;
+  height: 8rem;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(18, 227, 245, 0.26) 0%, rgba(26, 99, 216, 0.12) 50%, transparent 75%);
+  filter: blur(28px);
+  pointer-events: none;
+  animation: auraPulse 2.6s ease-in-out infinite;
+}
+
+.page-loader-3d-svg {
+  position: relative;
+  width: 11.5rem;
+  max-width: 80vw;
+  height: auto;
+  filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.65));
+  animation: logoFloat 2.6s ease-in-out infinite;
+}
+
+.page-loader-title {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.85;
 }
 
 .page-loader-line {
   position: relative;
-  width: 9rem;
+  width: 8.5rem;
   height: 2px;
   overflow: hidden;
-  border-radius: 2px;
-  background: rgba(234, 245, 255, 0.16);
+  border-radius: 9999px;
+  background: rgba(234, 245, 255, 0.14);
 }
 
 .page-loader-line::after {
@@ -1192,7 +1242,27 @@ summary:focus-visible {
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-  animation: loaderSweep 1s ease-in-out infinite;
+  animation: loaderSweep 1.1s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: perspective(600px) translateY(0) scale(1) rotateY(-4deg) rotateX(2deg);
+  }
+  50% {
+    transform: perspective(600px) translateY(-5px) scale(1.03) rotateY(2deg) rotateX(-1deg);
+  }
+}
+
+@keyframes auraPulse {
+  0%, 100% {
+    opacity: 0.75;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
 }
 
 @keyframes loaderSweep {

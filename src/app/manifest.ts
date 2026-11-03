@@ -14,14 +14,28 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#071426",
     icons: [
       {
-        src: "/images/cd4-logo.png",
-        sizes: "1254x1254",
-        type: "image/png"
+        src: "/icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "any"
+      },
+      {
+        src: "/icon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any"
+      },
+      {
+        src: "/icon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable"
       },
       {
         src: "/images/cd4-logo.png",
         sizes: "1254x1254",
-        type: "image/png"
+        type: "image/png",
+        purpose: "any"
       }
     ]
   };
